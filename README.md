@@ -1,4 +1,4 @@
-# Echosense
+# EchoSense
 EchoSense is an AI-powered assistive communication system designed to bridge the gap between individuals with speech and hearing impairments and the hearing population through real-time American Sign Language (ASL) recognition and speech/text translation. This innovative project combines computer vision, machine learning, and natural language processing into a seamless pipeline that recognizes hand gestures and converts them into spoken language with high accuracy and minimal delay.
 
 The core architecture of EchoSense comprises three key components: gesture recognition using Mediapipe, classification using the XGBoost machine learning model, and speech/text output via Google’s Text-to-Speech (gTTS) and translation APIs. Mediapipe enables accurate hand landmark detection in real-time video streams, providing 21-point hand keypoints per frame. These features are then fed into a trained XGBoost classifier, which identifies static ASL letters and digits. Finally, the recognized gesture is translated to speech and/or multilingual text, enabling effective communication between signers and non-signers.
