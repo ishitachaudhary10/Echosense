@@ -1,0 +1,68 @@
+import { useState } from 'react';
+import Webcam from 'react-webcam';
+import { useNavigate } from 'react-router-dom';
+
+const ASLAlphabetModule = () => {
+  const [isWebcamActive, setIsWebcamActive] = useState(false);
+  const [detectedLetter, setDetectedLetter] = useState('');
+  const navigate = useNavigate();
+
+  const toggleWebcam = () => {
+    setIsWebcamActive(!isWebcamActive);
+  };
+
+  const handleDetection = () => {
+    const mockLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const randomLetter = mockLetters[Math.floor(Math.random() * mockLetters.length)];
+    setDetectedLetter(randomLetter);
+  };
+
+  return (
+    <div className="min-h-screen p-8 bg-[#F0DEDC]">
+      <button
+        onClick={() => navigate('/')}
+        className="mb-8 text-[#7F9AA5] hover:text-[#E0A295] transition-colors"
+      >
+        ← Back to Dashboard
+      </button>
+      
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-3xl font-bold text-[#75625E] mb-8">
+          ASL Alphabet to Speech
+        </h1>
+        
+        <div className="bg-white p-6 rounded-lg shadow-lg">
+          <div className="mb-6">
+            <button
+              onClick={toggleWebcam}
+              className="bg-[#E0A295] text-white px-6 py-2 rounded-lg hover:bg-[#d89485] transition-colors"
+            >
+              {isWebcamActive ? 'Stop Camera' : 'Start Camera'}
+            </button>
+          </div>
+
+          {isWebcamActive && (
+            <div className="mb-6">
+              <Webcam
+                audio={false}
+                className="rounded-lg w-full max-w-2xl mx-auto"
+                onUserMedia={handleDetection}
+              />
+            </div>
+          )}
+
+          {detectedLetter && (
+            <div className="text-center">
+              <h2 className="text-2xl font-semibold mb-2">Detected Letter:</h2>
+              <div className="text-6xl font-bold text-[#E0A295]">
+                {detectedLetter}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ASLAlphabetModule;
