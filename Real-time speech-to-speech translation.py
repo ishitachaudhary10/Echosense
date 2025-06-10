@@ -4,7 +4,7 @@ from gtts import gTTS
 import io
 import pygame
 
-# Initialize pygame mixer
+
 pygame.mixer.init()
 
 def speak(text, lang='en'):
